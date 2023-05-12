@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class ProductModel {
   ProductModel({
     required this.code,
@@ -9,7 +11,7 @@ class ProductModel {
   final String code;
   final String name;
   final String productId;
-  final int qty;
+  var qty;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         code: json["code"] ?? "",

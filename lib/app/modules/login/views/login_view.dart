@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,7 +53,9 @@ class LoginView extends GetView<LoginController> {
                     controller.isHidden.toggle();
                   },
                   icon: Icon(
-                    controller.isHidden.isFalse ? Icons.remove_red_eye : Icons.remove_red_eye_outlined,
+                    controller.isHidden.isFalse
+                        ? Icons.remove_red_eye
+                        : Icons.remove_red_eye_outlined,
                   ),
                 ),
                 border: OutlineInputBorder(
@@ -66,7 +70,8 @@ class LoginView extends GetView<LoginController> {
               if (controller.isLoading.isFalse) {
                 if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
                   controller.isLoading(true);
-                  Map<String, dynamic> hasil = await authC.login(emailC.text, passC.text);
+                  Map<String, dynamic> hasil =
+                      await authC.login(emailC.text, passC.text);
                   controller.isLoading(false);
 
                   if (hasil["error"] == true) {
@@ -78,6 +83,12 @@ class LoginView extends GetView<LoginController> {
                   Get.snackbar("Error", "Email dan password wajib diisi.");
                 }
               }
+              // Kode yang akan dieksekusi setelah penundaan 2 detik
+              // Timer(Duration(seconds: 3), () {
+              //   Get.snackbar("Button Pressed", "Tombol ditekan.");
+              // });
+              // Timer(Duration(seconds: 2), () {
+              // });
             },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
